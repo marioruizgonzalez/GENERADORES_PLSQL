@@ -12,7 +12,7 @@ BEGIN
       or UPPER(SUBSTR(TABLE_NAME,6,3)) LIKE UPPER('CAT') 
       or UPPER(SUBSTR(TABLE_NAME,6,3)) LIKE UPPER('OPE'));
 
-      DBMS_OUTPUT.PUT_LINE('Se realizara la creacion del trigger, sobre '||LN_TRIGGERS_AFECTADOS||' Tablas'||CHR(13));
+      DBMS_OUTPUT.PUT_LINE('Se realizara la creacion del codigo, sobre '||LN_TRIGGERS_AFECTADOS||' Tablas'||CHR(13));
 
       --COMIENZA LA CREACION DE TRIGGER POR TABLA
       FOR DATO IN ( SELECT DISTINCT TRIGGER_NAME
