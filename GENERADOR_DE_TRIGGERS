@@ -38,6 +38,8 @@ BEGIN
                       
       DBMS_OUTPUT.PUT_LINE(LV_CODIGO_FINAL||CHR(13));
       
+      EXECUTE IMMEDIATE(LV_CODIGO_FINAL);
+      
       END LOOP;
 
 END;
