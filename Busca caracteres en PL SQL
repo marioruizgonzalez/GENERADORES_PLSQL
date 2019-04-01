@@ -1,0 +1,117 @@
+DECLARE
+
+  LV_NOMBRE_DEL_MODULO VARCHAR2(200):='Ejecutron';
+  NOMBRE_PAQUETE VARCHAR2(4000):='PKG_VALIDA_ICE';
+
+  TYPE T_LISTA_DE_FUNCIONES IS TABLE OF VARCHAR2(4000);
+  LY_FUNCION_A_PROCESAR T_LISTA_DE_FUNCIONES := T_LISTA_DE_FUNCIONES();
+  
+
+  LN_POSICION_DE_VERVO NUMBER;
+  LN_POSICION_DE_ANEXO1 NUMBER;
+  LN_POSICION_DE_ANEXO2 NUMBER;
+  LN_POSICION_DE_ANEXO3 NUMBER;
+  LN_POSICION_DE_ANEXO4 NUMBER;
+  LN_POSICION_DE_ANEXO5 NUMBER;
+  LN_POSICION_DE_ANEXO6 NUMBER;
+  LN_POSICION_DE_ANEXO7 NUMBER;
+  LN_POSICION_DE_ANEXO8 NUMBER;
+  LN_POSICION_DE_ANEXO9 NUMBER;
+  LN_POSICION_DE_ANEXO10 NUMBER;
+  LN_POSICION_DE_ANEXO11 NUMBER;
+  LN_POSICION_DE_ANEXO12 NUMBER;
+  LN_POSICION_DE_ANEXO13 NUMBER;
+  LN_POSICION_DE_ANEXO14 NUMBER;
+  LN_POSICION_DE_ANEXO15 NUMBER;
+  LN_POSICION_DE_ANEXO16 NUMBER;
+  LN_POSICION_DE_ANEXO17 NUMBER;
+  LN_POSICION_DE_ANEXO18 NUMBER;
+  FUNCION_DE_SALIDA VARCHAR2(4000);
+  LV_NOMBRE_TABLA VARCHAR2(100);
+  
+  LINEA_SOLA CLOB;
+  counter integer :=0; 
+  
+  CURSOR C_PKG_BODY(IL_PAQUETE VARCHAR2) IS 
+    select TEXT 
+    from all_source
+    where type = 'PACKAGE BODY'
+    and name = IL_PAQUETE
+    ORDER BY LINE ASC;
+    
+  CURSOR C_TEMPLATES_EXISTENTES(IV_MODULO VARCHAR2)IS
+    select uri_template 
+    from ords_metadata.ords_templates  
+    where module_id in (select id 
+                        from ords_metadata.ords_modules 
+                        where name = IV_MODULO);
+BEGIN
+        FOR LINEA_SOURCE IN C_PKG_BODY(NOMBRE_PAQUETE)
+          LOOP
+            --dbms_output.put_line(LINEA_SOURCE.TEXT);
+            LINEA_SOLA:= LINEA_SOURCE.TEXT;
+            LN_POSICION_DE_VERVO:= INSTR(LOWER(LINEA_SOLA), 'v_desc_error', 1);
+            LN_POSICION_DE_ANEXO1:= INSTR(LOWER(LINEA_SOLA), 'pkg_valida_alea', 1);
+            LN_POSICION_DE_ANEXO2:= INSTR(LOWER(LINEA_SOLA), 'return', 1);
+            LN_POSICION_DE_ANEXO3:= INSTR(LOWER(LINEA_SOLA), 'varchar', 1);
+            LN_POSICION_DE_ANEXO4:= INSTR(LOWER(LINEA_SOLA), 'p_reg_error', 1);
+            LN_POSICION_DE_ANEXO5:= INSTR(LOWER(LINEA_SOLA), 'then', 1);
+            LN_POSICION_DE_ANEXO6:= INSTR(LOWER(LINEA_SOLA), 'null', 1);
+            LN_POSICION_DE_ANEXO7:= INSTR(LOWER(LINEA_SOLA), '%type', 1);
+            LN_POSICION_DE_ANEXO8:= INSTR(LOWER(LINEA_SOLA), 'dbms', 1);
+            LN_POSICION_DE_ANEXO9:= INSTR(LOWER(LINEA_SOLA), 'f_b16_mpersona_tipo', 1);
+            LN_POSICION_DE_ANEXO10:= INSTR(LOWER(LINEA_SOLA), 'p_val_tmanteni', 1);
+            LN_POSICION_DE_ANEXO11:= INSTR(LOWER(LINEA_SOLA), 'p_b3_vrolunico', 1);
+            LN_POSICION_DE_ANEXO12:= INSTR(LOWER(LINEA_SOLA), 'into', 1);
+            LN_POSICION_DE_ANEXO13:= INSTR(LOWER(LINEA_SOLA), 'pv_param', 1);
+            LN_POSICION_DE_ANEXO14:= INSTR(LOWER(LINEA_SOLA), 'mensaje de error no definido', 1);
+            LN_POSICION_DE_ANEXO15:= INSTR(LOWER(LINEA_SOLA), 'v-pl-', 1);
+            LN_POSICION_DE_ANEXO16:= INSTR(LOWER(LINEA_SOLA), 'f_val_formato', 1);  
+            LN_POSICION_DE_ANEXO17:= INSTR(LOWER(LINEA_SOLA), 'f_val_domicilio', 1);  
+            LN_POSICION_DE_ANEXO18:= INSTR(LOWER(LINEA_SOLA), 'ov_msg_error', 1);          
+            
+                                     
+        
+            IF LN_POSICION_DE_VERVO <> 0 THEN 
+              IF LN_POSICION_DE_ANEXO1 = 0 THEN 
+                IF LN_POSICION_DE_ANEXO2 = 0 THEN 
+                  IF LN_POSICION_DE_ANEXO3 = 0 THEN 
+                    if LN_POSICION_DE_ANEXO4 = 0 then
+                      if LN_POSICION_DE_ANEXO5 = 0 then 
+                        if LN_POSICION_DE_ANEXO6 = 0 then 
+                          if LN_POSICION_DE_ANEXO7 = 0 then 
+                            if LN_POSICION_DE_ANEXO8 = 0 then
+                              if LN_POSICION_DE_ANEXO9 = 0 then
+                                if LN_POSICION_DE_ANEXO10 = 0 then
+                                  if LN_POSICION_DE_ANEXO11 = 0 then
+                                    if LN_POSICION_DE_ANEXO12 = 0 then
+                                      if LN_POSICION_DE_ANEXO13 = 0 then
+                                        if LN_POSICION_DE_ANEXO14 = 0 then
+                                          if LN_POSICION_DE_ANEXO15 = 0 then
+                                            if LN_POSICION_DE_ANEXO16 = 0 then
+                                              if LN_POSICION_DE_ANEXO17 = 0 then
+                                                if LN_POSICION_DE_ANEXO18 = 0 then
+                                      DBMS_OUTPUT.PUT_LINE(LINEA_SOLA);
+                                                end if;
+                                              end if;
+                                            end if;
+                                          end if;
+                                        end if;
+                                      end if;
+                                    end if;
+                                  end if;
+                                end if;
+                              end if;
+                            end if;
+                          end if;
+                        end if;
+                      end if;
+                    end if;
+                  END IF;
+                END IF;
+              END IF;
+            END IF;
+          END LOOP;
+          
+          
+END;
